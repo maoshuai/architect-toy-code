@@ -1,13 +1,12 @@
 package com.architect.week5.consistenthash;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 import java.util.TreeMap;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
 class ConsistentHashImplTest {
@@ -85,8 +84,15 @@ class ConsistentHashImplTest {
         assertThat(consistentHash.getServingNode("key14950")).isEqualTo("node1");
     }
 
+
     @Test
-    void removeNode_shouldContain0Nodes_when_removeAllNodes(){
+    void getServingNode_shouldThrowException_whenNoNodesAdded(){
+        ConsistentHashImpl consistentHash = new ConsistentHashImpl(150, new HashFunctionImpl());
+        assertThatThrownBy(()->consistentHash.getServingNode("key")).isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    void removeNode_shouldContain0Nodes_whenRemoveAllNodes(){
         ConsistentHashImpl consistentHash = new ConsistentHashImpl(150, new HashFunctionImpl());
         consistentHash.addNode("node1");
         consistentHash.addNode("node2");
