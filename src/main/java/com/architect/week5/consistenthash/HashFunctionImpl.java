@@ -7,7 +7,7 @@ import java.nio.charset.Charset;
 import java.util.Objects;
 
 public class HashFunctionImpl implements HashFunction {
-    com.google.common.hash.HashFunction googleHashFunc = Hashing.crc32();
+    com.google.common.hash.HashFunction googleHashFunc = Hashing.sha256();
     @Override
     public int hash(String object) {
 
