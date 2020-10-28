@@ -45,7 +45,7 @@ public class ConsistentHashImpl implements ConsistentHash {
            return entry.getValue();
         }
 
-        throw new IllegalStateException("No qualified node");
+        throw new IllegalStateException("No serving node");
 
     }
 
