@@ -92,6 +92,11 @@ class ConsistentHashImplTest {
     }
 
     @Test
+    void constructor_shouldThrowException_whenSettingTooSmallVirtualNodeSize(){
+        assertThatThrownBy(()->new ConsistentHashImpl(1, new HashFunctionImpl())).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void removeNode_shouldContain0Nodes_whenRemoveAllNodes(){
         ConsistentHashImpl consistentHash = new ConsistentHashImpl(150, new HashFunctionImpl());
         consistentHash.addNode("node1");
