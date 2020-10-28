@@ -35,7 +35,7 @@ public class ConsistentHashImpl implements ConsistentHash {
         int keyHash = this.hashFunction.hash(key);
 
         for(Map.Entry<Integer, String> entry: nodes.entrySet()){
-            if(keyHash<=entry.getKey()){
+            if(keyHash < entry.getKey()){
                 return entry.getValue();
             }
         }
